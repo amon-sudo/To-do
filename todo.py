@@ -33,7 +33,7 @@ def view_task(tasks):
         print("Your todo list is: ")
         for idx, task in enumerate(tasks_list):
             status = "[Completed]" if task["completed"] else "[pending]"
-            print(f"{idx +1}.  {task['description']} | {status}")
+            print(f"{idx +1}.  {task['description']} - {status}")
 def create_task(tasks):
     description = input("Enter your task: ")
     if description:
@@ -47,15 +47,15 @@ def mark_task_complete(tasks):
    
     try:
          task_number = int(input("Enter the task number to mark as completed: ").strip())
-         if 1 <= task_number <= len(tasks):
+         if 1 <= task_number <= len(tasks["tasks"]):
             tasks["tasks"][task_number - 1]["completed"] = True
             save_task(tasks)
             print("Task marked as completed")
          else:
-            print("Enter avalid number")
-    except:
+            print("Enter a valid number")
+    except ValueError:
         print("Enter a number.")
-       
+    
 
 def main():
     tasks = load_task()
@@ -83,5 +83,5 @@ def main():
     
         
     
-
+    
 main()
