@@ -56,17 +56,33 @@ def mark_task_complete(tasks):
             print("Enter a valid number")
     except ValueError:
         print("Enter a number.")
+def delete_task(tasks):
+    view_task(tasks)
     
+    try:
+        task_del = int(input("Enter the number of the task yopu want to delete: ").strip())
+        if 1 <= task_del <= len(tasks["tasks"]):
+            deleted = tasks["tasks"].pop(task_del -1)
+            save_task(tasks)
+            print(f"[purple] The deleted task is {deleted['description']}")
+            
+        else:  
+            print("[red bold]Enter a valid number [/ red bold]")
+            
+        
+    except ValueError:
+        print("Enter a number my friend")
 
 def main():
     tasks = load_task()
     
     while True:
-        print("\nTo-Do List Manager")
+        print("\nTo-Do List Menu")
         print("1. View Tasks")
         print("2. Add Task")
         print("3. Complete Task")
-        print("4. Exit")
+        print("4. Delete a task")
+        print("5. Exit")
         choice = input("Enter Your Choice: ").strip()
         
         if choice == "1":
@@ -76,6 +92,8 @@ def main():
         elif choice == "3":
             mark_task_complete(tasks)
         elif choice == "4":
+            delete_task(tasks)
+        elif choice == "5":
             
             print("[yellow bold]Welcome Again!![/ yellow bold]")
             break
