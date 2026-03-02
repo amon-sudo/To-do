@@ -3,6 +3,7 @@
 # mark items as complete
 # save remaining items
 import json
+from rich import print
 
 file_name = "todo_list.json"
 
@@ -14,7 +15,7 @@ def load_task():
       with open(file_name, "r") as file:
          return json.load(file)
     except:
-        print("Failed to save .")
+        print("[red bold]Failed to save.[/red bold]")
     
     
     
@@ -28,9 +29,9 @@ def save_task(tasks):
 def view_task(tasks):
     tasks_list = tasks["tasks"]
     if len(tasks_list) == 0:
-        print("No Tasks available.")
+        print("[grey]No Tasks available.[/grey]")
     else:
-        print("Your todo list is: ")
+        print("[blue bold]Your todo list is: [/ blue bold]")
         for idx, task in enumerate(tasks_list):
             status = "[Completed]" if task["completed"] else "[pending]"
             print(f"{idx +1}.  {task['description']} - {status}")
@@ -76,7 +77,7 @@ def main():
             mark_task_complete(tasks)
         elif choice == "4":
             
-            print("Welcome Again!!")
+            print("[yellow bold]Welcome Again!![/ yellow bold]")
             break
         else:
             print("Please Enter avalid number. Try again!.")
