@@ -64,7 +64,7 @@ def delete_task(tasks):
         if 1 <= task_del <= len(tasks["tasks"]):
             deleted = tasks["tasks"].pop(task_del -1)
             save_task(tasks)
-            print(f"[purple] The deleted task is {deleted['description']}")
+            print(f"[purple bold] The deleted task is {deleted['description']}[/ purple bold]")
             
         else:  
             print("[red bold]Enter a valid number [/ red bold]")
